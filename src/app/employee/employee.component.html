@@ -1,0 +1,68 @@
+<div class="container">
+    <div class = "row">
+    <!-- <div class = "col-md-3">
+      <form [formGroup]="employeeForm" (ngSubmit)="onSubmit(employeeForm.value)">
+          <div class="form-group">
+              <label for="name">Name:</label>
+              <input class="form-control input-sm" id="name" placeholder="Enter Name" formControlName = "name">
+          </div>
+          <div class="form-group">
+              <label for="org">Organization:</label>
+              <input class="form-control input-sm" id="org" placeholder="Enter Organization" formControlName = "org">
+            </div>
+          <div class="form-group">
+              <label for="role">Role:</label>
+              <input class="form-control input-sm" id="role" placeholder="Enter Role" formControlName = "role">
+          </div>
+        <div class="form-group">
+          <label for="project">Project:</label>
+          <input class="form-control input-sm" id="project" placeholder="Enter Project" formControlName = "project">
+        </div>
+        <div class="form-group">
+          <label for="location">Location:</label>
+          <input class="form-control input-sm" id="location" placeholder="Enter Location" formControlName = "location">
+        </div>
+        <button type="submit" class="btn btn-sm btn-success">Submit</button>
+      </form>
+    </div> -->
+    <div class = "col-md-12">
+  
+        <div class="container">
+            <h2>Employee Details</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Employee Id</th>
+                  <th>Name</th>
+                  <th>Organization</th>
+                  <th>Role</th>
+                  <th>Project</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let employee of employeeInfo">
+                  <td>{{employee.empId}}</td>
+                  <td>{{employee.name}}</td>
+                  <td>{{employee.org}}</td>
+                  <td>{{employee.role}}</td>
+                  <td>{{employee.project}}</td>
+                  <td>{{employee.location}}</td>
+                  <td>
+                      <button type="submit" class="btn btn-sm btn-success" (click) = "updateUser($event, index)">Update</button>
+                      &nbsp;&nbsp;<button type="submit" class="btn btn-sm btn-danger" (click) = "updateUser($event, index)">Delete</button>
+                  </td>
+                </tr>
+                </tbody>
+            </table>
+          </div>
+  
+    </div>
+    </div>
+  
+  
+  
+    </div>
+  <!-- <div>
+    
+  </div> -->
