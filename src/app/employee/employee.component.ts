@@ -1,22 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform  } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 import { FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Employee } from './employee';
 import { EmployeeService } from './employee.service';
 
-
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+  styleUrls: ['./employee.component.css'],
+  providers: [DecimalPipe]
 })
 export class EmployeeComponent implements OnInit {
 
   employeeForm:FormGroup;
   //userInfo = new User();
   employeeInfo: Employee[];
-  constructor(private formBuilder: FormBuilder, private empService:EmployeeService) { }
+
+  employeeInfo$: Observable<Employee[]>;
+
+  filter = new FormControl('');
+
+  constructor(private formBuilder: FormBuilder, private empService:EmployeeService, pipe: DecimalPipe) {
+    this.employeeInfo$ = this.filter.valueChanges.pipe(
+      startWith(''),
+      map(text => this.search(text))
+    );
+   }
 
   ngOnInit() {
 
@@ -37,6 +50,13 @@ export class EmployeeComponent implements OnInit {
 
   }
 
+  search(text: string): Employee[] {
+    return this.employeeInfo.filter(employee => {
+      const term = text.toLowerCase();
+      return employee.name.toLowerCase().includes(term);
+    });
+  }
+  
   showUser(data){
     this.employeeInfo = data;
   }
