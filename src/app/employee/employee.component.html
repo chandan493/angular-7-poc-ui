@@ -105,10 +105,15 @@
                 </div>
                 <div *ngIf="employeeForm.get('organization').hasError('minlength')
                 && employeeForm.get('organization').touched" class="text-danger">Minimum Legth is 6</div>
-              </div>
+                            </div>
               <div class="form-group">
                 <label for="role">Role:</label>
                 <input class="form-control input-sm" id="role" placeholder="Enter Role" formControlName="role">
+                <div *ngIf="employeeForm.get('role').hasError('required')
+                    && employeeForm.get('role').touched" class="text-danger">'Role' is a mandatory field
+                </div>
+                <div *ngIf="employeeForm.get('role').hasError('minlength')
+                && employeeForm.get('role').touched" class="text-danger">Minimum Legth is 6</div>
               </div>
               <div class="form-group">
                 <label for="project">Project:</label>
@@ -132,4 +137,4 @@
               &nbsp;&nbsp;&nbsp;<button class="btn btn-sm btn-danger" (click)="addEmployeePopup = false">Cancel</button>
             </form>
           </div>
-        </p-dialog>
+        </p-dialog> 

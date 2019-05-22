@@ -99,9 +99,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   deleteEmployee(empId: number) {
-    if (this.deletePopup) {
       this.empService.deleteEmployee(empId).subscribe((data) => this.loadEmployees());
-    }
   }
 
 }
