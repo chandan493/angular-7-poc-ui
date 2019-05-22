@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-      <form>
-          <div id="search-box" class="form-group form-inline">
-              Search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
-          </div>
-      </form>  
+    <form>
+      <div id="search-box" class="form-group form-inline">
+        Search: <input class="form-control ml-2" type="text" [formControl]="filter" />
+      </div>
+    </form>
     <div class="col-md-12">
 
       <div class="container">
@@ -16,30 +16,32 @@
         <table class="table table-striped">
           <thead>
             <tr>
-                <th scope="col">S. No.</th>
-                <th scope="col">Employee Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Organization</th>
-                <th scope="col">Role</th>
-                <th scope="col">Project</th>
-                <th scope="col">Location</th>
-                <th scope="col">Action</th>
+              <th scope="col">S. No.</th>
+              <th scope="col">Employee Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Organization</th>
+              <th scope="col">Role</th>
+              <th scope="col">Project</th>
+              <th scope="col">Location</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let employee of employeeInfo">
-                <tr *ngFor="let employee of employeeInfo; index as i">
-                    <td scope="row">{{ i + 1 }}</td>
-                    <td scope="row">{{employee.empID}}</td>
-                    <td scope="row"><ngb-highlight [result]="employee.empName" [term]="filter.value"></ngb-highlight></td>
-                    <td scope="row">{{employee.organization}}</td>
-                    <td scope="row">{{employee.role}}</td>
-                    <td scope="row">{{employee.project}}</td>
-                    <td scope="row">{{employee.location}}</td>
+            <tr *ngFor="let employee of employeeInfo; index as i">
+              <td scope="row">{{ i + 1 }}</td>
+              <td scope="row">{{employee.empID}}</td>
+              <td scope="row">
+                <ngb-highlight [result]="employee.empName" [term]="filter.value"></ngb-highlight>
+              </td>
+              <td scope="row">{{employee.organization}}</td>
+              <td scope="row">{{employee.role}}</td>
+              <td scope="row">{{employee.project}}</td>
+              <td scope="row">{{employee.location}}</td>
               <td>
                 <button type="submit" class="btn btn-sm btn-success" (click)="updateEmployee()">Update</button>
                 &nbsp;&nbsp;<button type="submit" class="btn btn-sm btn-danger"
-                  (click)="deleteEmployee(employee.empID)">Delete</button>
+                  (click)="initDeletePopup(employee.empID)">Delete</button>
               </td>
             </tr>
           </tbody>
@@ -85,56 +87,73 @@
 </div>
 </ng-template> -->
 <p-dialog [closeOnEscape]="false" [(visible)]="addEmployeePopup" [responsive]="true" modal="modal" responsive="true"
-            styleClass="uem-sweetalert" [resizable]="false" [draggable]="false" class="roundCorner">
-            <div class="container addEmployee">
-              <form [formGroup]="employeeForm" (ngSubmit)="onSubmit(employeeForm.value)">
-              <div class="form-group">
-                <label for="name">Name:</label>
-                <input class="form-control input-sm" id="name" placeholder="Enter Name" formControlName="empName">
-                <div *ngIf="employeeForm.get('empName').hasError('required')
+  styleClass="uem-sweetalert" [resizable]="false" [draggable]="false" class="roundCorner">
+  <div class="container addEmployee">
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit(employeeForm.value)">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input class="form-control input-sm" id="name" placeholder="Enter Name" formControlName="empName">
+        <div *ngIf="employeeForm.get('empName').hasError('required')
                             && employeeForm.get('empName').touched" class="text-danger">'Name' is a mandatory field
-                </div>
-                <div *ngIf="employeeForm.get('empName').hasError('minlength')
+        </div>
+        <div *ngIf="employeeForm.get('empName').hasError('minlength')
                             && employeeForm.get('empName').touched" class="text-danger">Minimum Legth is 6</div>
-              </div>
-              <div class="form-group">
-                <label for="org">Organization:</label>
-                <input class="form-control input-sm" id="org" placeholder="Enter Organization" formControlName="organization">
-                <div *ngIf="employeeForm.get('organization').hasError('required')
+      </div>
+      <div class="form-group">
+        <label for="org">Organization:</label>
+        <input class="form-control input-sm" id="org" placeholder="Enter Organization" formControlName="organization">
+        <div *ngIf="employeeForm.get('organization').hasError('required')
                 && employeeForm.get('organization').touched" class="text-danger">'Organization' is a mandatory field
-                </div>
-                <div *ngIf="employeeForm.get('organization').hasError('minlength')
+        </div>
+        <div *ngIf="employeeForm.get('organization').hasError('minlength')
                 && employeeForm.get('organization').touched" class="text-danger">Minimum Legth is 6</div>
-                            </div>
-              <div class="form-group">
-                <label for="role">Role:</label>
-                <input class="form-control input-sm" id="role" placeholder="Enter Role" formControlName="role">
-                <div *ngIf="employeeForm.get('role').hasError('required')
+      </div>
+      <div class="form-group">
+        <label for="role">Role:</label>
+        <input class="form-control input-sm" id="role" placeholder="Enter Role" formControlName="role">
+        <div *ngIf="employeeForm.get('role').hasError('required')
                     && employeeForm.get('role').touched" class="text-danger">'Role' is a mandatory field
-                </div>
-                <div *ngIf="employeeForm.get('role').hasError('minlength')
+        </div>
+        <div *ngIf="employeeForm.get('role').hasError('minlength')
                 && employeeForm.get('role').touched" class="text-danger">Minimum Legth is 6</div>
-              </div>
-              <div class="form-group">
-                <label for="project">Project:</label>
-                <input class="form-control input-sm" id="project" placeholder="Enter Project" formControlName="project">
-                <div *ngIf="employeeForm.get('project').hasError('required')
+      </div>
+      <div class="form-group">
+        <label for="project">Project:</label>
+        <input class="form-control input-sm" id="project" placeholder="Enter Project" formControlName="project">
+        <div *ngIf="employeeForm.get('project').hasError('required')
                     && employeeForm.get('project').touched" class="text-danger">'Project' is a mandatory field
-                </div>
-                <div *ngIf="employeeForm.get('project').hasError('minlength')
+        </div>
+        <div *ngIf="employeeForm.get('project').hasError('minlength')
                 && employeeForm.get('project').touched" class="text-danger">Minimum Legth is 6</div>
-              </div>
-              <div class="form-group">
-                <label for="location">Location:</label>
-                <input class="form-control input-sm" id="location" placeholder="Enter Location" formControlName="location">
-                <div *ngIf="employeeForm.get('location').hasError('required')
+      </div>
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input class="form-control input-sm" id="location" placeholder="Enter Location" formControlName="location">
+        <div *ngIf="employeeForm.get('location').hasError('required')
                     && employeeForm.get('location').touched" class="text-danger">'Location' is a mandatory field
-                </div>
-                <div *ngIf="employeeForm.get('location').hasError('minlength')
+        </div>
+        <div *ngIf="employeeForm.get('location').hasError('minlength')
                 && employeeForm.get('location').touched" class="text-danger">Minimum Legth is 6</div>
-              </div>
-              <button type="submit" class="btn btn-sm btn-success" [disabled]="employeeForm.valid == false">Submit</button>
-              &nbsp;&nbsp;&nbsp;<button class="btn btn-sm btn-danger" (click)="addEmployeePopup = false">Cancel</button>
-            </form>
-          </div>
-        </p-dialog> 
+      </div>
+      <button type="submit" class="btn btn-sm btn-success" [disabled]="employeeForm.valid == false">Submit</button>
+      &nbsp;&nbsp;&nbsp;<button class="btn btn-sm btn-danger" (click)="addEmployeePopup = false">Cancel</button>
+    </form>
+  </div>
+</p-dialog>
+
+<p-dialog [closeOnEscape]="false" [(visible)]="deletePopup" [responsive]="true" modal="modal" responsive="true"
+  styleClass="uem-sweetalert" [resizable]="false" [draggable]="true" class="roundCorner">
+  <div class="container addEmployee">
+    <form (ngSubmit)="deleteEmployee()">
+      <div>
+        <h3>Are you sure</h3>
+      </div>
+      <br>
+      <br>
+      <div>
+        <button type="submit" class="btn btn-primary">Delete</button>
+        &nbsp;&nbsp;&nbsp;<button class="btn btn-sm btn-danger" (click)="deletePopup = false">Cancel</button>
+      </div>
+    </form>
+  </div>
+</p-dialog>

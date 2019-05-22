@@ -17,7 +17,7 @@ export class EmployeeComponent implements OnInit {
 
   employeeForm: FormGroup;
   //userInfo = new User();
-  employeeInfo: Employee[]=[];
+  employeeInfo: Employee[] = [];
 
   employeeInfo$: Observable<Employee[]>;
   addUser: boolean = false;
@@ -25,6 +25,7 @@ export class EmployeeComponent implements OnInit {
   addEmployeePopup: boolean = false;
   filter = new FormControl('');
   deletePopup: boolean = false;
+  empId: number;
   constructor(private formBuilder: FormBuilder, private empService: EmployeeService, private pipe: DecimalPipe) {
 
     this.employeeInfo$ = this.filter.valueChanges.pipe(
@@ -98,8 +99,16 @@ export class EmployeeComponent implements OnInit {
     console.log("helll");
   }
 
-  deleteEmployee(empId: number) {
-      this.empService.deleteEmployee(empId).subscribe((data) => this.loadEmployees());
+initDeletePopup(empId: number) {
+  this.empId = empId;
+  this.deletePopup = true;
+}
+
+  deleteEmployee() {
+    if (this.deletePopup) {
+      this.empService.deleteEmployee(this.empId).subscribe((data) => this.loadEmployees());
+      this.deletePopup = !this.deletePopup;
+    }
   }
 
 }
