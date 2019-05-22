@@ -37,7 +37,7 @@ export class EmployeeComponent implements OnInit {
   ngOnInit() {
 
     this.empService.getEmployees().subscribe(
-     data => {
+     (data) => {
        console.log(data),
        this.showUser(data)},
      error => console.log(error) 
@@ -48,8 +48,8 @@ export class EmployeeComponent implements OnInit {
 
   initializeForm(){
     this.employeeForm = this.formBuilder.group({
-      name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-      org: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
+      empName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
+      organization: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
       role: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
       project: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
       location: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
@@ -59,7 +59,7 @@ export class EmployeeComponent implements OnInit {
   search(text: string): Employee[] {
     return this.employeeInfo.filter(employee => {
       const term = text.toLowerCase();
-      return employee.name.toLowerCase().includes(term);
+      return employee.empName.toLowerCase().includes(term);
     });
   }
 

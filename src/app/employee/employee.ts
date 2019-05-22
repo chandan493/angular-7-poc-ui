@@ -1,8 +1,8 @@
 export class Employee{
-    empId:number;
-    name:string;
-    org:string;
+    empID:number;
+    empName:string;
+    organization:string;
     role:string;
     project:string;
-    location:string   
+    location:string;   
 }

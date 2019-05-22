@@ -13,7 +13,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class EmployeeService {
-  SERVER_URL: string = "http://localhost:8080/api/";
+  API_SERVER: string = "http://10.31.90.46";
+  SERVER_URL: string = this.API_SERVER+":8080/";
   constructor(private httpClient: HttpClient) { }
 
   public getEmployees(){ 
@@ -21,9 +22,9 @@ export class EmployeeService {
   }
 
   addEmployee (employee: Employee): Observable<Employee> {
-    return this.httpClient.post<Employee>(this.SERVER_URL+'employees', employee, httpOptions).pipe(
-      tap((newEmp: Employee) => this.log(`added hero w/ id=${newEmp.empId}`)),
-      catchError(this.handleError<Employee>('addHero'))
+    return this.httpClient.post<Employee>(this.SERVER_URL+'addEmployee', employee, httpOptions).pipe(
+      tap((newEmp: Employee) => this.log(`Added Employee w/ id=${newEmp.empID}`)),
+      catchError(this.handleError<Employee>('AddEmployee'))
     );
   }
 

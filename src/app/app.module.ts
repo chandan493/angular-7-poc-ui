@@ -7,8 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { InMemoryWebApiModule } from "angular-in-memory-web-api";  
-import { DataService } from  "./data.service";
 import {HttpClientModule} from '@angular/common/http';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -31,8 +29,7 @@ import {DialogModule} from 'primeng/dialog';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    NgbAlertModule,
-    InMemoryWebApiModule.forRoot(DataService),
+    NgbAlertModule,  
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
