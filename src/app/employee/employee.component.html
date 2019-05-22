@@ -91,25 +91,51 @@
               <div class="form-group">
                 <label for="name">Name:</label>
                 <input class="form-control input-sm" id="name" placeholder="Enter Name" formControlName="empName">
+                <div *ngIf="employeeForm.get('empName').hasError('required')
+                            && employeeForm.get('empName').touched" class="text-danger">'Name' is a mandatory field
+                </div>
+                <div *ngIf="employeeForm.get('empName').hasError('minlength')
+                            && employeeForm.get('empName').touched" class="text-danger">Minimum Legth is 6</div>
               </div>
               <div class="form-group">
                 <label for="org">Organization:</label>
                 <input class="form-control input-sm" id="org" placeholder="Enter Organization" formControlName="organization">
+                <div *ngIf="employeeForm.get('organization').hasError('required')
+                && employeeForm.get('organization').touched" class="text-danger">'Organization' is a mandatory field
+                </div>
+                <div *ngIf="employeeForm.get('organization').hasError('minlength')
+                && employeeForm.get('organization').touched" class="text-danger">Minimum Legth is 6</div>
+
               </div>
               <div class="form-group">
                 <label for="role">Role:</label>
                 <input class="form-control input-sm" id="role" placeholder="Enter Role" formControlName="role">
+                <div *ngIf="employeeForm.get('role').hasError('required')
+                    && employeeForm.get('role').touched" class="text-danger">'Role' is a mandatory field
+                </div>
+                <div *ngIf="employeeForm.get('role').hasError('minlength')
+                && employeeForm.get('role').touched" class="text-danger">Minimum Legth is 6</div>
               </div>
               <div class="form-group">
                 <label for="project">Project:</label>
                 <input class="form-control input-sm" id="project" placeholder="Enter Project" formControlName="project">
+                <div *ngIf="employeeForm.get('project').hasError('required')
+                    && employeeForm.get('project').touched" class="text-danger">'Project' is a mandatory field
+                </div>
+                <div *ngIf="employeeForm.get('project').hasError('minlength')
+                && employeeForm.get('project').touched" class="text-danger">Minimum Legth is 6</div>
               </div>
               <div class="form-group">
                 <label for="location">Location:</label>
                 <input class="form-control input-sm" id="location" placeholder="Enter Location" formControlName="location">
+                <div *ngIf="employeeForm.get('location').hasError('required')
+                    && employeeForm.get('location').touched" class="text-danger">'Location' is a mandatory field
+                </div>
+                <div *ngIf="employeeForm.get('location').hasError('minlength')
+                && employeeForm.get('location').touched" class="text-danger">Minimum Legth is 6</div>
               </div>
               <button type="submit" class="btn btn-sm btn-success" [disabled]="employeeForm.valid == false">Submit</button>
               &nbsp;&nbsp;&nbsp;<button class="btn btn-sm btn-danger" (click)="addEmployeePopup = false">Cancel</button>
             </form>
           </div>
-        </p-dialog>
+        </p-dialog> 
