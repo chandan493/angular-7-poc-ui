@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { Employee } from './employee/employee';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,9 @@ export class DataService implements InMemoryDbService {
     ];
     return { employees };
 
+  }
+
+  genId(employees: Employee[]): number {
+    return employees.length > 0 ? Math.max(...employees.map(employee => employee.empId)) + 1 : 1001;
   }
 }

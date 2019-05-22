@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { EmployeeService } from './employee/employee.service';
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,9 @@ import { EmployeeService } from './employee/employee.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule.forRoot(),
+    DialogModule,
+    BrowserAnimationsModule
   ],
   providers: [EmployeeService],
   bootstrap: [AppComponent]

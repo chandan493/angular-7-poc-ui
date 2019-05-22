@@ -1,68 +1,115 @@
 <div class="container">
-    <div class = "row">
-    <!-- <div class = "col-md-3">
-      <form [formGroup]="employeeForm" (ngSubmit)="onSubmit(employeeForm.value)">
-          <div class="form-group">
-              <label for="name">Name:</label>
-              <input class="form-control input-sm" id="name" placeholder="Enter Name" formControlName = "name">
+  <div class="row">
+      <form>
+          <div id="search-box" class="form-group form-inline">
+              Search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
           </div>
-          <div class="form-group">
-              <label for="org">Organization:</label>
-              <input class="form-control input-sm" id="org" placeholder="Enter Organization" formControlName = "org">
-            </div>
-          <div class="form-group">
-              <label for="role">Role:</label>
-              <input class="form-control input-sm" id="role" placeholder="Enter Role" formControlName = "role">
-          </div>
-        <div class="form-group">
-          <label for="project">Project:</label>
-          <input class="form-control input-sm" id="project" placeholder="Enter Project" formControlName = "project">
+      </form>  
+    <div class="col-md-12">
+
+      <div class="container">
+        <div class="row">
+          <h2>Employee Details <button type="submit" class="btn btn-sm btn-success" style="margin-left: 61%"
+              (click)="open()">Add Employee</button></h2>
+
         </div>
-        <div class="form-group">
-          <label for="location">Location:</label>
-          <input class="form-control input-sm" id="location" placeholder="Enter Location" formControlName = "location">
-        </div>
-        <button type="submit" class="btn btn-sm btn-success">Submit</button>
-      </form>
-    </div> -->
-    <div class = "col-md-12">
-  
-        <div class="container">
-            <h2>Employee Details</h2>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Employee Id</th>
-                  <th>Name</th>
-                  <th>Organization</th>
-                  <th>Role</th>
-                  <th>Project</th>
-                  <th>Location</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let employee of employeeInfo">
-                  <td>{{employee.empId}}</td>
-                  <td>{{employee.name}}</td>
-                  <td>{{employee.org}}</td>
-                  <td>{{employee.role}}</td>
-                  <td>{{employee.project}}</td>
-                  <td>{{employee.location}}</td>
-                  <td>
-                      <button type="submit" class="btn btn-sm btn-success" (click) = "updateUser($event, index)">Update</button>
-                      &nbsp;&nbsp;<button type="submit" class="btn btn-sm btn-danger" (click) = "updateUser($event, index)">Delete</button>
-                  </td>
-                </tr>
-                </tbody>
-            </table>
-          </div>
-  
+        <table class="table table-striped">
+          <thead>
+            <tr>
+                <th scope="col">S. No.</th>
+                <th scope="col">Employee Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Organization</th>
+                <th scope="col">Role</th>
+                <th scope="col">Project</th>
+                <th scope="col">Location</th>
+                <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of employeeInfo">
+                <tr *ngFor="let employee of employeeInfo; index as i">
+                    <td scope="row">{{ i + 1 }}</td>
+                    <td scope="row">{{employee.empId}}</td>
+                    <td scope="row"><ngb-highlight [result]="employee.name" [term]="filter.value"></ngb-highlight></td>
+                    <td scope="row">{{employee.org}}</td>
+                    <td scope="row">{{employee.role}}</td>
+                    <td scope="row">{{employee.project}}</td>
+                    <td scope="row">{{employee.location}}</td>
+              <td>
+                <button type="submit" class="btn btn-sm btn-success" (click)="updateEmployee()">Update</button>
+                &nbsp;&nbsp;<button type="submit" class="btn btn-sm btn-danger"
+                  (click)="deleteEmployee()">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
-    </div>
-  
-  
-  
-    </div>
-  <!-- <div>
+  </div>
+
+
+
+</div>
+<!-- <div>
     
   </div> -->
+
+
+<!-- <ng-template #content let-modal>
+    <div>
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit(employeeForm.value)">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input class="form-control input-sm" id="name" placeholder="Enter Name" formControlName="name">
+      </div>
+      <div class="form-group">
+        <label for="org">Organization:</label>
+        <input class="form-control input-sm" id="org" placeholder="Enter Organization" formControlName="org">
+      </div>
+      <div class="form-group">
+        <label for="role">Role:</label>
+        <input class="form-control input-sm" id="role" placeholder="Enter Role" formControlName="role">
+      </div>
+      <div class="form-group">
+        <label for="project">Project:</label>
+        <input class="form-control input-sm" id="project" placeholder="Enter Project" formControlName="project">
+      </div>
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input class="form-control input-sm" id="location" placeholder="Enter Location" formControlName="location">
+      </div>
+      <button type="submit" class="btn btn-sm btn-success">Submit</button>
+    </form>
+</div>
+</ng-template> -->
+<p-dialog [closeOnEscape]="false" [(visible)]="addEmployeePopup" [responsive]="true" modal="modal" responsive="true"
+            styleClass="uem-sweetalert" [resizable]="false" [draggable]="false" class="roundCorner">
+            <div class="container addEmployee">
+              <form [formGroup]="employeeForm" (ngSubmit)="onSubmit(employeeForm.value)">
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input class="form-control input-sm" id="name" placeholder="Enter Name" formControlName="name">
+              </div>
+              <div class="form-group">
+                <label for="org">Organization:</label>
+                <input class="form-control input-sm" id="org" placeholder="Enter Organization" formControlName="org">
+              </div>
+              <div class="form-group">
+                <label for="role">Role:</label>
+                <input class="form-control input-sm" id="role" placeholder="Enter Role" formControlName="role">
+              </div>
+              <div class="form-group">
+                <label for="project">Project:</label>
+                <input class="form-control input-sm" id="project" placeholder="Enter Project" formControlName="project">
+              </div>
+              <div class="form-group">
+                <label for="location">Location:</label>
+                <input class="form-control input-sm" id="location" placeholder="Enter Location" formControlName="location">
+              </div>
+              <button type="submit" class="btn btn-sm btn-success" [disabled]="employeeForm.valid == false">Submit</button>
+              &nbsp;&nbsp;&nbsp;<button class="btn btn-sm btn-danger" (click)="addEmployeePopup = false">Cancel</button>
+            </form>
+          </div>
+        </p-dialog>
