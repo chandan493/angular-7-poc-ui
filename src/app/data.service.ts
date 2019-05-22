@@ -19,7 +19,7 @@ export class DataService implements InMemoryDbService {
 
   }
 
-  genId(employees: Employee[]): number {
-    return employees.length > 0 ? Math.max(...employees.map(employee => employee.empId)) + 1 : 1001;
-  }
+  // genId(employees: Employee[]): number {
+  //   return employees.length > 0 ? Math.max(...employees.map(employee => employee.empId)) + 1 : 1001;
+  // }
 }
