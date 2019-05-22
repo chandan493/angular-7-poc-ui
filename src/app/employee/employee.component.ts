@@ -15,45 +15,50 @@ import { DecimalPipe } from '@angular/common';
 })
 export class EmployeeComponent implements OnInit {
 
-  employeeForm:FormGroup;
+  employeeForm: FormGroup;
   //userInfo = new User();
-  employeeInfo: Employee[];
+  employeeInfo: Employee[]=[];
 
   employeeInfo$: Observable<Employee[]>;
-  addUser:boolean = false;
+  addUser: boolean = false;
   closeResult: string;
-  addEmployeePopup:boolean = false;
+  addEmployeePopup: boolean = false;
   filter = new FormControl('');
-  constructor(private formBuilder: FormBuilder, private empService:EmployeeService, private pipe: DecimalPipe) {
+  deletePopup: boolean = false;
+  constructor(private formBuilder: FormBuilder, private empService: EmployeeService, private pipe: DecimalPipe) {
 
     this.employeeInfo$ = this.filter.valueChanges.pipe(
       startWith(''),
       map(text => this.search(text))
     );
 
-   }
+  }
 
 
-  ngOnInit() {
-
+  loadEmployees() {
     this.empService.getEmployees().subscribe(
-     (data) => {
-       console.log(data),
-       this.showUser(data)},
-     error => console.log(error) 
+      (data) => {
+        console.log(data),
+          this.showUser(data)
+      },
+      error => console.log(error)
     );
+  }
+  ngOnInit() {
+    this.loadEmployees();
     this.initializeForm();
+
 
   }
 
-  initializeForm(){
+  initializeForm() {
     this.employeeForm = this.formBuilder.group({
       empName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
       organization: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
       role: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
       project: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
       location: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-      })
+    })
   }
 
   search(text: string): Employee[] {
@@ -63,25 +68,25 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-  showUser(data){
+  showUser(data) {
     this.employeeInfo = data;
   }
 
-  showAddUser(){
+  showAddUser() {
     this.addUser = true;
   }
 
-  
+
   open() {
     this.initializeForm();
     this.addEmployeePopup = true;
   }
 
-  closePopup(){
+  closePopup() {
     this.addEmployeePopup = false;
   }
 
-  onSubmit(data:Employee){
+  onSubmit(data: Employee) {
     this.empService.addEmployee(data as Employee)
       .subscribe(emp => {
         this.employeeInfo.push(emp);
@@ -89,11 +94,14 @@ export class EmployeeComponent implements OnInit {
       });
   }
 
-  updateEmployee(){
+  updateEmployee() {
     console.log("helll");
   }
 
-  deleteEmployee(){
-    console.log("helll");
+  deleteEmployee(empId: number) {
+    if (this.deletePopup) {
+      this.empService.deleteEmployee(empId).subscribe((data) => this.loadEmployees());
+    }
   }
+
 }

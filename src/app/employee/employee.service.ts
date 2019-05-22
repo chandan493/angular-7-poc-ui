@@ -44,4 +44,8 @@ export class EmployeeService {
       return of(result as T);
     };
   }
+
+  deleteEmployee(empId: number) {
+    return this.httpClient.delete(this.SERVER_URL + 'deleteEmployee/' + empId);
+  }
 }
