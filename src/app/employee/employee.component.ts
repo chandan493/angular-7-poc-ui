@@ -56,11 +56,11 @@ export class EmployeeComponent implements OnInit {
   initializeForm() {
     this.employeeForm = this.formBuilder.group({
       empID: new FormControl(),
-      empName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-      organization: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-      role: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-      project: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-      location: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
+      empName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.pattern(/[A-Z][a-z]/)])),
+      organization: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.pattern(/[A-Z][a-z]/)])),
+      role: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.pattern(/[A-Z][a-z]/)])),
+      project: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.pattern(/[A-Z][a-z]/)])),
+      location: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.pattern(/[A-Z][a-z]/)])),
     })
   }
 
