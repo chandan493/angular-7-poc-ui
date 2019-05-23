@@ -93,7 +93,7 @@
 
         <div class="form-group"  *ngIf="isEdit">
             <label for="empId">EmpID:</label>
-            <input class="form-control input-sm" id="empId" formControlName="empID"/>
+            <input class="form-control input-sm" id="empId" formControlName="empID" [disabled] = "isEdit == TRUE"/>
            
             
           </div>

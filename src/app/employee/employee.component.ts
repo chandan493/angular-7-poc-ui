@@ -26,7 +26,7 @@ export class EmployeeComponent implements OnInit {
   addEmployeePopup: boolean = false;
   filter = new FormControl('');
   deletePopup: boolean = false;
-  empId: number;
+  empID: number;
   constructor(private formBuilder: FormBuilder, private empService: EmployeeService, private pipe: DecimalPipe) {
 
     this.employeeInfo$ = this.filter.valueChanges.pipe(
@@ -55,6 +55,7 @@ export class EmployeeComponent implements OnInit {
 
   initializeForm() {
     this.employeeForm = this.formBuilder.group({
+      empID: new FormControl(),
       empName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
       organization: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
       role: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
@@ -63,18 +64,6 @@ export class EmployeeComponent implements OnInit {
     })
   }
 
-  initializeFormForUpdate(employee:Employee){
-    console.info(employee);
-    this.employeeForm = this.formBuilder.group({
-      empId:new FormControl(employee.empID),
-      empName: new FormControl(employee.empName, Validators.compose([Validators.required, Validators.minLength(6)])),
-      organization: new FormControl(employee.organization, Validators.compose([Validators.required, Validators.minLength(6)])),
-      role: new FormControl(employee.role, Validators.compose([Validators.required, Validators.minLength(6)])),
-      project: new FormControl(employee.project, Validators.compose([Validators.required, Validators.minLength(6)])),
-      location: new FormControl(employee.location, Validators.compose([Validators.required, Validators.minLength(6)])),
-      })
-      console.log(employee.empName)
-  }
   search(text: string): Employee[] {
     return this.employeeInfo.filter(employee => {
       const term = text.toLowerCase();
@@ -94,6 +83,7 @@ export class EmployeeComponent implements OnInit {
   open() {
     this.initializeForm();
     this.addEmployeePopup = true;
+    this.isEdit = false;
   }
 
   closePopup() {
@@ -109,29 +99,43 @@ export class EmployeeComponent implements OnInit {
       });
   }
 //Added by srijan
-  editEmployeeDetails(empId:number){
-    console.log("helll");
+  editEmployeeDetails(empID:number){
     this.isEdit=true;
     this.addEmployeePopup = true;
     
-    this.empService.getEmployeebyId(empId).subscribe((data) => {
-      this.initializeFormForUpdate(<Employee>data);
-
-
-    })
+    this.empService.getEmployeebyId(empID).subscribe(
+      (data) => {
+        console.log(data);
+        this.editEmp(data as Employee, empID);
+        this.addEmployeePopup = true;
+        //this.initializeForm();
+      },
+      error => console.log(error)
+    );
   }
   updateEmployeeDetails(employee:Employee) {
     console.log("new commit");
   }
 
-initDeletePopup(empId: number) {
-  this.empId = empId;
+editEmp(emp:Employee, empID){
+ this.employeeForm.setValue({
+  empID: empID,
+  empName: emp.empName,
+  organization: emp.organization,
+  role: emp.role,
+  project: emp.project,
+  location: emp.location
+})
+}
+
+initDeletePopup(empID: number) {
+  this.empID = empID;
   this.deletePopup = true;
 }
 
   deleteEmployee() {
     if (this.deletePopup) {
-      this.empService.deleteEmployee(this.empId).subscribe((data) => this.loadEmployees());
+      this.empService.deleteEmployee(this.empID).subscribe((data) => this.loadEmployees());
       this.deletePopup = !this.deletePopup;
     }
   }
