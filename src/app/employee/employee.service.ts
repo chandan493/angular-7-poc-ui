@@ -26,7 +26,15 @@ export class EmployeeService {
       catchError(this.handleError<Employee>('AddEmployee'))
     );
   }
+  //Added by srijan
+  getEmployeebyId(empID: number):Observable<{}>{
 
+    return this.httpClient.get<Employee[]>(this.SERVER_URL+'employee/'+empID);
+  }
+
+  updateEmployeebyId(employee:Employee):Observable<{}>{
+    return this.httpClient.put(this.SERVER_URL+'updateEmployee',employee,httpOptions);
+  }
   private log(message: string) {
     console.log(message);
   }

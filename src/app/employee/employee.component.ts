@@ -16,6 +16,7 @@ import { DecimalPipe } from '@angular/common';
 export class EmployeeComponent implements OnInit {
 
   employeeForm: FormGroup;
+  isEdit:boolean=false;
   //userInfo = new User();
   employeeInfo: Employee[] = [];
 
@@ -62,6 +63,18 @@ export class EmployeeComponent implements OnInit {
     })
   }
 
+  initializeFormForUpdate(employee:Employee){
+    console.info(employee);
+    this.employeeForm = this.formBuilder.group({
+      empId:new FormControl(employee.empID),
+      empName: new FormControl(employee.empName, Validators.compose([Validators.required, Validators.minLength(6)])),
+      organization: new FormControl(employee.organization, Validators.compose([Validators.required, Validators.minLength(6)])),
+      role: new FormControl(employee.role, Validators.compose([Validators.required, Validators.minLength(6)])),
+      project: new FormControl(employee.project, Validators.compose([Validators.required, Validators.minLength(6)])),
+      location: new FormControl(employee.location, Validators.compose([Validators.required, Validators.minLength(6)])),
+      })
+      console.log(employee.empName)
+  }
   search(text: string): Employee[] {
     return this.employeeInfo.filter(employee => {
       const term = text.toLowerCase();
@@ -88,15 +101,27 @@ export class EmployeeComponent implements OnInit {
   }
 
   onSubmit(data: Employee) {
+    this.isEdit=false;
     this.empService.addEmployee(data as Employee)
       .subscribe(emp => {
         this.employeeInfo.push(emp);
         this.addEmployeePopup = false;
       });
   }
-
-  updateEmployee() {
+//Added by srijan
+  editEmployeeDetails(empId:number){
     console.log("helll");
+    this.isEdit=true;
+    this.addEmployeePopup = true;
+    
+    this.empService.getEmployeebyId(empId).subscribe((data) => {
+      this.initializeFormForUpdate(<Employee>data);
+
+
+    })
+  }
+  updateEmployeeDetails(employee:Employee) {
+    console.log("new commit");
   }
 
 initDeletePopup(empId: number) {
