@@ -91,13 +91,21 @@ export class EmployeeComponent implements OnInit {
   }
 
   onSubmit(data: Employee) {
-    this.isEdit=false;
+    if(this.isEdit == false){
     this.empService.addEmployee(data as Employee)
       .subscribe(emp => {
         this.employeeInfo.push(emp);
         this.addEmployeePopup = false;
       });
   }
+  else{
+    this.empService.updateEmployeebyId(data as Employee)
+      .subscribe(emp => {
+        this.loadEmployees();
+        this.addEmployeePopup = false;
+      });
+  }
+}
 //Added by srijan
   editEmployeeDetails(empID:number){
     this.isEdit=true;
