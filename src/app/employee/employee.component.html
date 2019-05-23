@@ -139,9 +139,7 @@
         </div>
         <div *ngIf="employeeForm.get('project').hasError('minlength')
                 && employeeForm.get('project').touched" class="text-danger">Minimum Length is 6.</div>
-        <div *ngIf="employeeForm.get('project').hasError('pattern') && !employeeForm.get('project').hasError('minlength')
-                && employeeForm.get('project').touched" class="text-danger">Only Alphabets are allowed.</div>
-      </div>
+        </div>
       <div class="form-group">
         <label for="location">Location:</label>
         <input class="form-control input-sm" id="location" placeholder="Enter Location" formControlName="location">
