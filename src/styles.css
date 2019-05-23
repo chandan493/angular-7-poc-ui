@@ -37,6 +37,12 @@
     padding:0 20px;
 }
 
+.deleteEmployee{
+    width: 60%;
+    padding: 8%;
+    background-color: lightgrey;
+    border-radius: 5px;
+}
 
 .addEmployee{
     width: 90%;
