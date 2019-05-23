@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class EmployeeService {
-  SERVER_URL: string = "http://angular-poc-api.cfapps.io/";
+  SERVER_URL: string = "https://angular-poc-api.cfapps.io/";
   constructor(private httpClient: HttpClient) { }
 
   public getEmployees(){ 
