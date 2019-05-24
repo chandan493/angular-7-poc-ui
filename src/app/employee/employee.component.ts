@@ -2,10 +2,8 @@ import { Component, OnInit, PipeTransform } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Employee } from './employee';
 import { EmployeeService } from './employee.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 import { DecimalPipe } from '@angular/common';
 @Component({
   selector: 'app-employee',
@@ -27,12 +25,8 @@ export class EmployeeComponent implements OnInit {
   filter = new FormControl('');
   deletePopup: boolean = false;
   empID: number;
-  constructor(private formBuilder: FormBuilder, private empService: EmployeeService, private pipe: DecimalPipe) {
-
-    this.employeeInfo$ = this.filter.valueChanges.pipe(
-      startWith(''),
-      map(text => this.search(text))
-    );
+  searchText;
+  constructor(private formBuilder: FormBuilder, private empService: EmployeeService) {
 
   }
 
@@ -62,13 +56,6 @@ export class EmployeeComponent implements OnInit {
       project: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
       location: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.pattern(/^[a-zA-Z ]*$/)])),
     })
-  }
-
-  search(text: string): Employee[] {
-    return this.employeeInfo.filter(employee => {
-      const term = text.toLowerCase();
-      return employee.empName.toLowerCase().includes(term);
-    });
   }
 
   showUser(data) {
@@ -116,7 +103,6 @@ export class EmployeeComponent implements OnInit {
         console.log(data);
         this.editEmp(data as Employee, empID);
         this.addEmployeePopup = true;
-        //this.initializeForm();
       },
       error => console.log(error)
     );

@@ -1,17 +1,16 @@
 <div class="container">
   <div class="row">
-    <!-- <form>
+    <form>
       <div id="search-box" class="form-group form-inline">
-        Search: <input class="form-control ml-2" type="text" [formControl]="filter" />
+        Search: <input class="form-control ml-2" name="search" [(ngModel)]="searchText" type="text"/>
       </div>
-    </form> -->
+    </form>
     <div class="col-md-12">
 
       <div class="container">
         <div class="row">
           <h2>Employee Details <button type="submit" class="btn btn-sm btn-success" style="margin-left: 61%"
               (click)="open()">Add Employee</button></h2>
-
         </div>
         <table class="table table-striped">
           <thead>
@@ -27,13 +26,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let employee of employeeInfo">
-            <tr *ngFor="let employee of employeeInfo; index as i">
+            <tr *ngFor="let employee of employeeInfo | filter:searchText; index as i">
               <td scope="row">{{ i + 1 }}</td>
               <td scope="row">{{employee.empID}}</td>
-              <td scope="row">
-                <ngb-highlight [result]="employee.empName" [term]="filter.value"></ngb-highlight>
-              </td>
+              <td scope="row">{{employee.empName}}</td>
               <td scope="row">{{employee.organization}}</td>
               <td scope="row">{{employee.role}}</td>
               <td scope="row">{{employee.project}}</td>

@@ -15,6 +15,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { EmployeeService } from './employee/employee.service';
 import {DialogModule} from 'primeng/dialog';
+import { Ng2SearchPipeModule } from 'ng2-search-filter'
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {DialogModule} from 'primeng/dialog';
     ReactiveFormsModule,
     NgbModule.forRoot(),
     DialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Ng2SearchPipeModule
   ],
   providers: [EmployeeService],
   bootstrap: [AppComponent]
