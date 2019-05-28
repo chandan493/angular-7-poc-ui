@@ -22,6 +22,8 @@ import { ListEmpComponent } from './employee/list-emp/list-emp.component';
 import { AddEmpComponent } from './employee/add-emp/add-emp.component';
 import { SearchEmpComponent } from './employee/search-emp/search-emp.component';
 
+import { OrderModule } from 'ngx-order-pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,7 @@ import { SearchEmpComponent } from './employee/search-emp/search-emp.component';
   ],
   imports: [
     BrowserModule,
+    OrderModule,
     AppRoutingModule,
     NgbModule,
     NgbAlertModule,  

@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
 import { FormControl } from '@angular/forms';
+import { OrderPipe } from 'ngx-order-pipe';
 
 
 @Component({
@@ -17,9 +18,14 @@ export class ListEmpComponent implements OnInit {
   addEmployeePopup: boolean = false;
   deletePopup: boolean = false;
   empID: number;
+  order: string = 'employee.empName';
+  reverse: boolean = false;
+  sortedCollection: Employee[];
   
 
-  constructor(private empService: EmployeeService) { }
+  constructor(private empService: EmployeeService, private orderPipe: OrderPipe) {
+    this.sortedCollection = orderPipe.transform(this.employeeInfo, 'employee.empName');
+   }
 
   ngOnInit() {
     this.loadEmployees();
@@ -72,6 +78,14 @@ this.empService.getEmployeebyId(empID).subscribe(
   }
   closePopup() {
     this.addEmployeePopup = false;
+  }
+
+  setOrder(value: string) {
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+
+    this.order = value;
   }
 
 }
