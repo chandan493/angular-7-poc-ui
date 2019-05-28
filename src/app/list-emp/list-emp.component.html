@@ -1,0 +1,64 @@
+<div class="row">
+  <!-- <form>
+    <div id="search-box" class="form-group form-inline">
+      Search: <input class="form-control ml-2" type="text" [formControl]="filter" />
+    </div>
+  </form> -->
+  <div class="col-md-12">
+
+    <div class="container">
+      
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">S. No.</th>
+            <th scope="col">Employee Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Organization</th>
+            <th scope="col">Role</th>
+            <th scope="col">Project</th>
+            <th scope="col">Location</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employeeInfo">
+          <tr *ngFor="let employee of employeeInfo; index as i">
+            <td scope="row">{{ i + 1 }}</td>
+            <td scope="row">{{employee.empID}}</td>
+            <td scope="row">
+              {{employee.empName}}
+            </td>
+            <td scope="row">{{employee.organization}}</td>
+            <td scope="row">{{employee.role}}</td>
+            <td scope="row">{{employee.project}}</td>
+            <td scope="row">{{employee.location}}</td>
+            <td>
+              <button type="submit" class="btn btn-sm btn-success"
+                (click)="editEmployeeDetails(employee.empID)">Update</button>
+              &nbsp;&nbsp;<button type="submit" class="btn btn-sm btn-danger"
+                (click)="initDeletePopup(employee.empID)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+<p-dialog [closeOnEscape]="false" [(visible)]="deletePopup" [responsive]="true" modal="modal" responsive="true"
+  styleClass="uem-sweetalert" [resizable]="false" [draggable]="true" class="roundCorner">
+  <div class="container addEmployee">
+    <form (ngSubmit)="deleteEmployee()">
+      <div>
+        <h3 align="center">Are you sure?</h3>
+      </div>
+      <br>
+      <br>
+      <div align="center">
+        <button type="submit" class="btn btn-sm btn-success">Yes</button>&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;<button class="btn btn-sm btn-danger" (click)="deletePopup = false">No</button>
+      </div>
+    </form>
+  </div>
+</p-dialog>

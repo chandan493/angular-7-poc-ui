@@ -1,0 +1,4 @@
+<div class="container">
+    <app-add-emp (updateEmployeeListEvent)="listemployee.loadEmployees();" #addemployee></app-add-emp>
+    <app-list-emp #listemployee (updateEmployeeEvent)="addemployee.update($event);"></app-list-emp>
+</div>

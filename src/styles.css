@@ -1,0 +1,75 @@
+/* You can add global styles to this file, and also import other style files */
+ /* @import "~bootstrap/dist/css/bootstrap.css";
+@import "~bootstrap/dist/css/bootstrap.min.css"; */
+/* @import "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"; */
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css";
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js";
+
+
+.uem-sweetalert.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow {
+    width: 478px;
+   /* min-width: auto;*/
+    border-radius: 5px;
+}
+.uem-sweetalert.ui-dialog {
+    position: fixed;
+    padding: 0;
+    overflow: hidden;
+    min-width: 35%;
+    border-radius: 5px !important;
+}
+
+
+.uem-sweetalert h3{
+    color:#545454;
+    font-size:30px;
+    font-weight: 600;
+    line-height: 35px;
+    padding:0;
+    margin:0;
+}
+.uem-sweetalert p{
+    color:#797979;
+    font-size:16px;
+    font-weight: normal;
+    line-height: 19px;
+    margin:20px 0 0 0;
+    padding:0 20px;
+}
+
+.deleteEmployee{
+    width: 60%;
+    padding: 8%;
+    background-color: lightgrey;
+    border-radius: 5px;
+}
+
+.addEmployee{
+    width: 90%;
+    padding: 8%;
+    background-color: ghostwhite;
+    border-radius: 5px;
+}
+
+.contactUs{
+    height: 20%;
+    width: 22%;
+    padding: 10%;
+    background-color: lightgray;
+    margin-left: 3%;
+    margin-top: 5%;
+    border-radius: 2px
+}
+
+.contactUs p {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 36%;
+    transform: translate(-50%, -50%);
+  }
+
+  #search-box{
+    margin-left: 70%;
+} 
+
