@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [

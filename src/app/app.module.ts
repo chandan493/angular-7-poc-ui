@@ -18,6 +18,7 @@ import {DialogModule} from 'primeng/dialog';
 import { ListEmpComponent } from './list-emp/list-emp.component';
 import { AddEmpComponent } from './add-emp/add-emp.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     EmployeeComponent,
     ContactUsComponent,
     ListEmpComponent,
-    AddEmpComponent
+    AddEmpComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

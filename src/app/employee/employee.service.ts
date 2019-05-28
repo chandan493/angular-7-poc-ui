@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Employee } from './employee';
 import { Observable, of} from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { User } from '../login/User';
 
 
 const httpOptions = {
@@ -56,4 +57,5 @@ export class EmployeeService {
   deleteEmployee(empId: number) {
     return this.httpClient.delete(this.SERVER_URL + 'deleteEmployee/' + empId);
   }
+
 }
