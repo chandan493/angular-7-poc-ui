@@ -15,9 +15,12 @@ import { EmployeeComponent } from './employee/employee.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { EmployeeService } from './employee/employee.service';
 import {DialogModule} from 'primeng/dialog';
-import { ListEmpComponent } from './list-emp/list-emp.component';
-import { AddEmpComponent } from './add-emp/add-emp.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter'
+
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { ListEmpComponent } from './employee/list-emp/list-emp.component';
+import { AddEmpComponent } from './employee/add-emp/add-emp.component';
+import { SearchEmpComponent } from './employee/search-emp/search-emp.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     EmployeeComponent,
     ContactUsComponent,
     ListEmpComponent,
-    AddEmpComponent
+    AddEmpComponent,
+    SearchEmpComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     ReactiveFormsModule,
     NgbModule.forRoot(),
     DialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Ng2SearchPipeModule
   ],
   providers: [EmployeeService],
   bootstrap: [AppComponent]

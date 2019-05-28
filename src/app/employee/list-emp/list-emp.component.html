@@ -22,13 +22,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let employee of employeeInfo">
-          <tr *ngFor="let employee of employeeInfo; index as i">
+          <tr *ngFor="let employee of employeeInfo | filter:searchText; index as i">
             <td scope="row">{{ i + 1 }}</td>
             <td scope="row">{{employee.empID}}</td>
-            <td scope="row">
-              {{employee.empName}}
-            </td>
+            <td scope="row">{{employee.empName}}</td>
             <td scope="row">{{employee.organization}}</td>
             <td scope="row">{{employee.role}}</td>
             <td scope="row">{{employee.project}}</td>

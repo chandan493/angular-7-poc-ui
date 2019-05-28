@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Employee } from '../employee/employee';
-import { EmployeeService } from '../employee/employee.service';
+import { EmployeeService } from '../employee.service';
+import { Employee } from '../employee';
+
 
 @Component({
   selector: 'app-add-emp',

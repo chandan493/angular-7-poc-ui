@@ -1,6 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { EmployeeService } from '../employee/employee.service';
-import { Employee } from '../employee/employee';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Employee } from '../employee';
+import { EmployeeService } from '../employee.service';
+import { FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-list-emp',
@@ -10,10 +12,12 @@ import { Employee } from '../employee/employee';
 export class ListEmpComponent implements OnInit {
 
   @Output() updateEmployeeEvent = new EventEmitter();
+  searchText:string;
   employeeInfo: Employee[] = [];
   addEmployeePopup: boolean = false;
   deletePopup: boolean = false;
   empID: number;
+  
 
   constructor(private empService: EmployeeService) { }
 
@@ -29,6 +33,10 @@ export class ListEmpComponent implements OnInit {
       },
       error => console.log(error)
     );
+  }
+
+  filterSearch(data){
+    this.searchText = data;
   }
 
   showUser(data) {

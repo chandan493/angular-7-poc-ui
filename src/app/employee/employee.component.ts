@@ -22,7 +22,7 @@ export class EmployeeComponent implements OnInit {
   employeeInfo$: Observable<Employee[]>;
   addUser: boolean = false;
   closeResult: string;
-  
+  searchText:string;
   filter = new FormControl('');
  
   constructor(private formBuilder: FormBuilder, private empService: EmployeeService, private pipe: DecimalPipe) {
