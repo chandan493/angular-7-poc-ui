@@ -18,13 +18,13 @@ export class ListEmpComponent implements OnInit {
   addEmployeePopup: boolean = false;
   deletePopup: boolean = false;
   empID: number;
-  order: string = 'employee.empName';
+  order: string = 'empName';
   reverse: boolean = false;
   sortedCollection: Employee[];
   
 
   constructor(private empService: EmployeeService, private orderPipe: OrderPipe) {
-    this.sortedCollection = orderPipe.transform(this.employeeInfo, 'employee.empName');
+    this.sortedCollection = orderPipe.transform(this.employeeInfo, 'empName');
    }
 
   ngOnInit() {
