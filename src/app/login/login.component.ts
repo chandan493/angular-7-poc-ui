@@ -9,9 +9,11 @@ import { User } from './User';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   loginPopup: boolean = false;
   loginForm: FormGroup;
-  loginStatus:string="";
+  loginStatus: string = '';
+
   constructor(private userService: UserService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -22,25 +24,22 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       userEmail: new FormControl(),
       password: new FormControl()
-    })
+    });
   }
 
   initLoginPopup() {
     this.loginPopup = true;
   }
 
-  onSubmit(data:User) {
+  onSubmit(data: User) {
     console.log(data);
     this.userService.loginUser(data).subscribe(
       (response) => {
         this.loginPopup = !this.loginPopup;
-        this.loginStatus=response["response"];
+        this.loginStatus= response["response"];
         console.log(response);
       }
     );
   }
-  test() {
-    console.log('test');
-  }
-
+  
 }

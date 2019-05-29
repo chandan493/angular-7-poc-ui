@@ -1,4 +1,5 @@
 <div class="container">
+    <app-search-emp [searchText] = "searchText" (keyUpSearch)="listemployee.filterSearch($event)"></app-search-emp>
     <app-add-emp (updateEmployeeListEvent)="listemployee.loadEmployees();" #addemployee></app-add-emp>
     <app-list-emp #listemployee (updateEmployeeEvent)="addemployee.update($event);"></app-list-emp>
 </div>

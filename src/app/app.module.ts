@@ -15,10 +15,15 @@ import { EmployeeComponent } from './employee/employee.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { EmployeeService } from './employee/employee.service';
 import {DialogModule} from 'primeng/dialog';
-import { ListEmpComponent } from './list-emp/list-emp.component';
-import { AddEmpComponent } from './add-emp/add-emp.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter'
+
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { LoginComponent } from './login/login.component';
+import { ListEmpComponent } from './employee/list-emp/list-emp.component';
+import { AddEmpComponent } from './employee/add-emp/add-emp.component';
+import { SearchEmpComponent } from './employee/search-emp/search-emp.component';
+
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -30,10 +35,12 @@ import { LoginComponent } from './login/login.component';
     ContactUsComponent,
     ListEmpComponent,
     AddEmpComponent,
-    LoginComponent
+    LoginComponent,
+    SearchEmpComponent
   ],
   imports: [
     BrowserModule,
+    OrderModule,
     AppRoutingModule,
     NgbModule,
     NgbAlertModule,  
@@ -42,7 +49,8 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     NgbModule.forRoot(),
     DialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Ng2SearchPipeModule
   ],
   providers: [EmployeeService],
   bootstrap: [AppComponent]

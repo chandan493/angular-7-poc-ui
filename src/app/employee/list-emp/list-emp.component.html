@@ -13,7 +13,7 @@
           <tr>
             <th scope="col">S. No.</th>
             <th scope="col">Employee Id</th>
-            <th scope="col">Name</th>
+            <th style="cursor: pointer;" (click)="setOrder('employee.empName')" scope="col">Name<span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span></th>
             <th scope="col">Organization</th>
             <th scope="col">Role</th>
             <th scope="col">Project</th>
@@ -22,13 +22,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let employee of employeeInfo">
-          <tr *ngFor="let employee of employeeInfo; index as i">
+          <tr *ngFor="let employee of employeeInfo | filter:searchText | orderBy: order:reverse:'case-insensitive'; index as i">
             <td scope="row">{{ i + 1 }}</td>
             <td scope="row">{{employee.empID}}</td>
-            <td scope="row">
-              {{employee.empName}}
-            </td>
+            <td scope="row">{{employee.empName}}</td>
             <td scope="row">{{employee.organization}}</td>
             <td scope="row">{{employee.role}}</td>
             <td scope="row">{{employee.project}}</td>

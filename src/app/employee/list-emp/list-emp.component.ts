@@ -1,6 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { EmployeeService } from '../employee/employee.service';
-import { Employee } from '../employee/employee';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Employee } from '../employee';
+import { EmployeeService } from '../employee.service';
+import { FormControl } from '@angular/forms';
+import { OrderPipe } from 'ngx-order-pipe';
+
 
 @Component({
   selector: 'app-list-emp',
@@ -10,12 +13,19 @@ import { Employee } from '../employee/employee';
 export class ListEmpComponent implements OnInit {
 
   @Output() updateEmployeeEvent = new EventEmitter();
+  searchText:string;
   employeeInfo: Employee[] = [];
   addEmployeePopup: boolean = false;
   deletePopup: boolean = false;
   empID: number;
+  order: string = 'employee.empName';
+  reverse: boolean = false;
+  sortedCollection: Employee[];
+  
 
-  constructor(private empService: EmployeeService) { }
+  constructor(private empService: EmployeeService, private orderPipe: OrderPipe) {
+    this.sortedCollection = orderPipe.transform(this.employeeInfo, 'employee.empName');
+   }
 
   ngOnInit() {
     this.loadEmployees();
@@ -29,6 +39,10 @@ export class ListEmpComponent implements OnInit {
       },
       error => console.log(error)
     );
+  }
+
+  filterSearch(data){
+    this.searchText = data;
   }
 
   showUser(data) {
@@ -64,6 +78,14 @@ this.empService.getEmployeebyId(empID).subscribe(
   }
   closePopup() {
     this.addEmployeePopup = false;
+  }
+
+  setOrder(value: string) {
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+
+    this.order = value;
   }
 
 }
