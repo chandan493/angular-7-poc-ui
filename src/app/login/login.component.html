@@ -1,8 +1,8 @@
-<ul>
+<ul class="login-space">
   <li><a (click)="initLoginPopup()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 </ul>
 
-<h3 id="loginStatus">{{loginStatus}}</h3>
+<!-- <h3 id="loginStatus">{{loginStatus}}</h3> -->
 
 <p-dialog [closeOnEscape]="false" [(visible)]="loginPopup" [responsive]="true" modal="modal" responsive="true"
   styleClass="uem-sweetalert" [resizable]="false" [draggable]="false" class="roundCorner">
@@ -11,7 +11,7 @@
 
       <div class="form-group">
         <label for="userEmail">EmailID:</label>
-        <input class="form-control input-sm" placeholder="Enter emailID" type="email" id="userEmail"
+        <input class="form-control" placeholder="Enter emailID" type="email" id="userEmail"
           formControlName="userEmail" />
       </div>
       <div class="form-group">
@@ -19,9 +19,24 @@
         <input type="password" class="form-control input-sm" id="name" placeholder="Enter password"
           formControlName="password">
       </div>
-
-      <button type="submit" class="btn btn-sm btn-success">Login</button>
-      &nbsp;&nbsp;&nbsp;<button class="btn btn-sm btn-danger" (click)="loginPopup = false">Cancel</button>
+      <div align="center">
+        <button type="submit" class="btn btn-sm btn-success">Login</button>
+        <span class="buttons-space"></span>
+        <button class="btn btn-sm btn-danger" (click)="loginPopup = false">Cancel</button>
+      </div>
     </form>
+  </div>
+</p-dialog>
+
+<p-dialog [closeOnEscape]="false" [(visible)]="responsePopup" [responsive]="true" modal="modal" responsive="true"
+  styleClass="uem-sweetalert" [resizable]="false" [draggable]="false" class="roundCorner">
+  <div class="container addEmployee">
+    <div align="center">
+      <h3>{{loginStatus}}</h3>
+    </div>
+    <br><br>
+    <div align="center">
+      <button class="btn btn-sm btn-danger" (click)="responsePopup = false">Close</button>
+    </div>
   </div>
 </p-dialog>

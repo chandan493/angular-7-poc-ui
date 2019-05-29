@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   loginPopup: boolean = false;
   loginForm: FormGroup;
   loginStatus: string = '';
+  responsePopup: boolean = false;
 
   constructor(private userService: UserService, private formBuilder: FormBuilder) { }
 
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser(data).subscribe(
       (response) => {
         this.loginPopup = !this.loginPopup;
-        this.loginStatus= response["response"];
+        this.loginStatus = response['response'];
+        this.responsePopup = true;
         console.log(response);
       }
     );

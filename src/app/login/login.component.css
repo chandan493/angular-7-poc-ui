@@ -1,3 +1,19 @@
 #loginStatus{
     color: white;
 }
+
+.buttons-space {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.login-space  {
+    margin-right: 26px;
+    margin-top: 15px;
+    cursor: pointer;
+    
+}
+a:hover {
+    color: white;
+}
+  
