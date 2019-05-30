@@ -5,7 +5,13 @@
 </div>
 
 <div *ngIf="!hideLogin">
-    <h3 id="loginStatus">Welcome Mr.{{userName}}</h3>
+  <ul class="login-space">
+    <li><a (click)="hideLogin = true"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+  </ul>
+</div>
+
+<div *ngIf="!hideLogin">
+  <h3 id="loginStatus">Welcome Mr.{{userName}}</h3>
 </div>
 
 <p-dialog [closeOnEscape]="false" [(visible)]="loginPopup" [responsive]="true" modal="modal" responsive="true"
@@ -40,7 +46,7 @@
     </div>
     <br><br>
     <div align="center">
-      <button class="btn btn-sm btn-danger" (click)="responsePopup = false; hideLogin = true">Close</button>
+      <button class="btn btn-sm btn-danger" (click)="responsePopup = false">Close</button>
     </div>
   </div>
 </p-dialog>
