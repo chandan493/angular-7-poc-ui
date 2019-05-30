@@ -1,5 +1,6 @@
 #loginStatus{
     color: white;
+    margin-left: 85%
 }
 
 .buttons-space {
@@ -8,12 +9,19 @@
 }
 
 .login-space  {
-    margin-right: 26px;
-    margin-top: 15px;
+    /* margin-right: 26px;
+    margin-top: 15px; */
+    margin-top:1%;
+    margin-left: 88%;
     cursor: pointer;
     
 }
 a:hover {
     color: white;
 }
+
+#login{
+    margin-left: 13%;
+}
+
   

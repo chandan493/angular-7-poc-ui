@@ -1,7 +1,10 @@
-<div *ngIf="hideLogin">
-  <ul class="login-space">
-    <li><a (click)="initLoginPopup()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-  </ul>
+<div class="login-space" *ngIf="hideLogin">
+  
+   <a><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+   <a id="login" (click)="initLoginPopup()"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+   
+
+ 
 </div>
 
 <div *ngIf="!hideLogin">
@@ -10,8 +13,8 @@
   </ul>
 </div>
 
-<div *ngIf="!hideLogin">
-  <h3 id="loginStatus">Welcome Mr.{{userName}}</h3>
+<div id="loginStatus" *ngIf="!hideLogin">
+  <h5>Welcome Mr.{{userName}}</h5>
 </div>
 
 <p-dialog [closeOnEscape]="false" [(visible)]="loginPopup" [responsive]="true" modal="modal" responsive="true"
