@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginStatus: string = '';
   responsePopup: boolean = false;
+  hideLogin: boolean = true;
+  userName: string = '';
 
   constructor(private userService: UserService, private formBuilder: FormBuilder) { }
 
@@ -40,8 +42,13 @@ export class LoginComponent implements OnInit {
         this.loginStatus = response['response'];
         this.responsePopup = true;
         console.log(response);
+        if (this.loginStatus.trim() === 'login successful') {
+          this.hideLogin = false;
+          let loginUser = response['loginUser'];
+          this.userName = loginUser['firstName'];
+        }
       }
     );
   }
-  
+
 }
