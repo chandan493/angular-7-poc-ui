@@ -24,6 +24,7 @@ import { AddEmpComponent } from './employee/add-emp/add-emp.component';
 import { SearchEmpComponent } from './employee/search-emp/search-emp.component';
 
 import { OrderModule } from 'ngx-order-pipe';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { OrderModule } from 'ngx-order-pipe';
     ListEmpComponent,
     AddEmpComponent,
     LoginComponent,
-    SearchEmpComponent
+    SearchEmpComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

@@ -22,4 +22,8 @@ export class UserService {
   loginUser(user: User): Observable<User> {
     return this.httpClient.post<User>(this.SERVER_URL + 'login', user);
   }
+
+  signupUser(user: User): Observable<User>{
+    return this.httpClient.post<User>(this.SERVER_URL + 'register', user);
+  }
 }

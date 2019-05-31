@@ -1,0 +1,103 @@
+<!-- <p>
+  sign-up works!
+</p> -->
+
+<a id="sign-up" (click)="SignupPopup();"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+
+<p-dialog [closeOnEscape]="false" [(visible)]="signupPopup" [responsive]="true" modal="modal" responsive="true"
+  styleClass="uem-sweetalert" [resizable]="false" [draggable]="false" class="roundCorner">
+  <div class="container addEmployee">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm.value)">
+
+      <div class="form-group">
+        <label for="userEmail">EmailID:</label>
+        <input class="form-control" placeholder="Enter Email ID" type="email" id="userEmail"
+          formControlName="userEmail" />
+          <div *ngIf="signupForm.get('userEmail').hasError('required')
+                            && signupForm.get('userEmail').touched" class="text-danger">'Email' is a mandatory field.
+        </div>
+        
+        <div *ngIf="signupForm.get('userEmail').hasError('pattern') 
+                            && signupForm.get('userEmail').touched" class="text-danger">Email id not properly validated
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input class="form-control" placeholder="Enter First Name" type="firstName" id="firstName"
+          formControlName="firstName" />
+          <div *ngIf="signupForm.get('firstName').hasError('required')
+                            && signupForm.get('firstName').touched" class="text-danger">'First Name' is a mandatory field.
+        </div>
+        
+        <div *ngIf="signupForm.get('firstName').hasError('pattern') 
+                            && signupForm.get('firstName').touched" class="text-danger">Only Alphabets are allowed.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input class="form-control" placeholder="Enter Last Name" type="lastName" id="lastName"
+          formControlName="lastName" />
+          <div *ngIf="signupForm.get('lastName').hasError('required')
+                            && signupForm.get('lastName').touched" class="text-danger">'Last Name' is a mandatory field.
+        </div>
+        
+        <div *ngIf="signupForm.get('lastName').hasError('pattern') 
+                            && signupForm.get('lastName').touched" class="text-danger">Only Alphabets are allowed.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="contactNo">Contact No:</label>
+        <input class="form-control" placeholder="Enter Contact No" type="text" id="contactNo" maxlength=10
+          formControlName="contactNo" />
+          <div *ngIf="signupForm.get('contactNo').hasError('required')
+                            && signupForm.get('contactNo').touched" class="text-danger">'Contact No' is a mandatory field.
+        </div>
+               <div *ngIf="signupForm.get('contactNo').hasError('pattern') 
+                            && signupForm.get('contactNo').touched" class="text-danger">10 Numeric Characters required
+        </div> 
+      </div>
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input class="form-control" placeholder="Enter Location" type="location" id="location"
+          formControlName="location" />
+          <div *ngIf="signupForm.get('location').hasError('required')
+                            && signupForm.get('location').touched" class="text-danger">'Location' is a mandatory field.
+        </div>
+        
+        <div *ngIf="signupForm.get('location').hasError('pattern') 
+                            && signupForm.get('location').touched" class="text-danger">Only Alphabets are allowed.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Password">Password:</label>
+        <input type="password" class="form-control input-sm" id="name" placeholder="Enter Password"
+          formControlName="password">
+          <div *ngIf="signupForm.get('password').hasError('required')
+                            && signupForm.get('password').touched" class="text-danger">'Password' is a mandatory field.
+        </div>
+        
+        <div *ngIf="signupForm.get('password').hasError('pattern') 
+                            && signupForm.get('password').touched" class="text-danger">Must be properly validated
+        </div>
+      </div>
+      <div align="center">
+        <button type="submit" class="btn btn-sm btn-success">Sign Up</button>
+        <span class="buttons-space"></span>&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-sm btn-danger" (click)="signupPopup = false">Cancel</button>
+      </div>
+    </form>
+  </div>
+</p-dialog>
+
+<p-dialog [closeOnEscape]="false" [(visible)]="responsePopup" [responsive]="true" modal="modal" responsive="true"
+  styleClass="uem-sweetalert" [resizable]="false" [draggable]="false" class="roundCorner">
+  <div class="container addEmployee">
+    <div align="center">
+      <h3>{{signupStatus}}</h3>
+    </div>
+    <br><br>
+    <div align="center">
+      <button class="btn btn-sm btn-danger" (click)="responsePopup = false">Close</button>
+    </div>
+  </div>
+</p-dialog>
